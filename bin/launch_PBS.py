@@ -131,9 +131,10 @@ def launch_torque(cmd='', script_name=None, runtime='01:00:00',
         qsubfile.write('\n')
 
     if projname is not None:
-        qsubfile.write("#SBATCH -A {0}\n".format(projname))
+        qsubfile.write("#PBS -A {0}\n".format(projname))
 
     if email is not None:
+        qsubfile.write('#PBS -mbe\n')
         qsubfile.write('#PBS -M %s\n' % email)
 
     qsubfile.write('\numask 2\n\n')
